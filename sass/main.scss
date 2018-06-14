@@ -1,0 +1,163 @@
+// colors
+$bg-color: #fff;
+$bg-gradient-color: radial-gradient(circle, $bg-color 50%, #348dd0, #0b214f);
+$logo-color: #344a96;
+$title-color: #414142;
+
+// fontface
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans:400,700");
+$josefin-font: 'Josefin Sans', sans-serif;
+
+// mixins
+@mixin center {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+@mixin pseudo($position: absolute, $content: "") {
+    content: $content;
+    position: $position;
+}
+
+@mixin breakpoint($point) {
+    @if $point==tablet {
+        @media (max-width: 1024px) and (min-width: 768px) {
+            @content ;
+        }
+    }
+    @else if $point==mobile {
+        @media (max-width: 480px) and (min-width: 320px) {
+            @content ;
+        }
+    }
+}
+
+html, body{
+  width: 100%;
+  height: 100%;
+}
+
+body{
+  background: $bg-gradient-color;
+  overflow: hidden;
+}
+
+.logo{
+  @include center;
+  margin-left: -1vmin;
+
+  .test{
+    @include center;
+    width: 10vmin;
+    height: 10vmin;
+    background: red;
+  }
+
+  .triangle-left{
+    @include center;
+    top: -46.9vmin;
+    left: -44.3vmin;
+    width: 0;
+    height: 0;
+    border-bottom: 9.1vmin solid $logo-color;
+    border-left: 7.85vmin solid transparent;
+
+    &:before{
+      @include pseudo;
+      top: 9.5vmin;
+      left: -11.2vmin;
+      width: 0;
+      height: 0;
+      border-bottom: 2.9vmin solid $logo-color;
+      border-right: 4vmin solid transparent;
+      border-left: 4.2vmin solid transparent;
+      transform: rotate(-38deg);
+    }
+  }
+
+  .triangle-center{
+    @include center;
+    top: -30.2vmin;
+    left: -30.7vmin;
+    width: 0;
+    height: 0;
+    border-bottom: 26.5vmin solid $logo-color;
+    border-right: 4.7vmin solid transparent;
+    border-left: 4.5vmin solid transparent;
+    transform: rotate(-9.7deg);
+
+    &:before{
+      @include pseudo;
+      top: -1vmin;
+      left: -3.5vmin;
+      width: 0;
+      height: 0;
+      border-bottom: 22.4vmin solid $logo-color;
+      border-right: 1vmin solid transparent;
+      border-left: 23vmin solid transparent;
+    }
+
+    &:after{
+      @include pseudo;
+      top: -16vmin;
+      left: 23vmin;
+      width: 0;
+      height: 0;
+      border-bottom: 50vmin solid $logo-color;
+      border-right: 3.2vmin solid transparent;
+      border-left: 13vmin solid transparent;
+      transform: rotate(44deg);
+    }
+  }
+
+  .triangle-bottom{
+    @include center;
+    top: 8.5vmin;
+    left: -5.5vmin;
+    width: 27vmin;
+    height: 18vmin;
+    background: $logo-color;
+    border: 0.6vmin solid $bg-color;
+    transform: rotate(44deg) skewX(-4deg) skewY(5.5deg);
+
+    &:before{
+      @include pseudo;
+      top: -3.4vmin;
+      left: 9.5vmin;
+      width: 17vmin;
+      height: 38vmin;
+      background: $bg-color;
+      transform: rotate(57deg);
+    }
+
+    &:after{
+      @include pseudo;
+      top: -6.1vmin;
+      left: 18vmin;
+      width: 0;
+      height: 0;
+      border-bottom: 4.5vmin solid $logo-color;
+      border-right: 7.8vmin solid transparent;
+      border-left: 13vmin solid transparent;
+      transform: rotate(150deg);
+    }
+  }
+}
+
+.title{
+  position: absolute;
+  margin-left: -2vmin;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  top: 53vh;
+  font-family: $josefin-font;
+  font-size: 15vmin;
+  color: $title-color;
+  font-weight: 400;
+  text-transform: uppercase;
+}
